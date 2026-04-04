@@ -13,7 +13,7 @@ def obtener_pokemon(nombre):
 
     return jsonify(respuesta.json())
 
-@app.route('/api/pokemon/<nombre>')
+@app.route('/api/error-archivo')
 def forzar_error_archivo():
     try:
 
@@ -23,7 +23,7 @@ def forzar_error_archivo():
     except FileNotFoundError as e:
         return jsonify({"error": f"Fallo al leer el archivo. Detalles: {str(e)}"}), 500
 
-@app.route('/api/pokemon/<nombre>')
+@app.route('/api/error-bd')
 def forzar_error_bd():
     try:
         conexion = mysql.connector.connect(
