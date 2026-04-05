@@ -39,3 +39,15 @@ Para levantar todo el ecosistema de microservicios, sitúate en la raíz del pro
 
 ```bash
 docker compose up -d --build
+```
+Una vez que los contenedores estén en ejecución:
+
+    Accede a la aplicación en: http://localhost:8099
+
+Inicia sesión con las credenciales por defecto:
+
+      Usuario: admin
+
+      Contraseña: admin123
+
+Navega al simulador de API y prueba los distintos botones de error.
