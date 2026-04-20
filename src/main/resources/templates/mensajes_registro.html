@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function showMessageOutput(messageOutput){}
+
+        function registeruser(){
+            stompClient.send("/app/register", {}, JSON.stringify({
+                username: document.getElementById("from").value,
+                password: document.getElementById("password").value
+            }));
+        }
+
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

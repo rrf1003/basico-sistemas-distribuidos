@@ -1,8 +1,13 @@
 package com.sistemasdistr.basico.service;
 
+import com.sistemasdistr.basico.model.User;
 import com.sistemasdistr.basico.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
+@Service
 public class UserService {
 
     @Autowired
@@ -13,7 +18,7 @@ public class UserService {
 
     public User register(String username, String password) throws Exception{
 
-        Map<String, String> keys = keyService.generateKeyPair();
+        Map<String, String> keys = keyservice.generateKeyPair();
 
         User user = new User();
         user.setUsername(username);

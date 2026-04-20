@@ -34,6 +34,9 @@ public class User implements Serializable {
     @Lob
     private byte[] publickey;
 
+    @Lob
+    private byte[] privateKey;
+
     @Column(name = "fechaUltimoAcceso")
     private LocalDateTime fechaUltimoAcceso;
 

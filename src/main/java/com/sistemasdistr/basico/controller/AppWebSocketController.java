@@ -2,6 +2,8 @@ package com.sistemasdistr.basico.controller;
 
 import com.sistemasdistr.basico.config.websocket.OutputMessage;
 import com.sistemasdistr.basico.dto.Message;
+import com.sistemasdistr.basico.dto.UserDTO;
+import com.sistemasdistr.basico.service.UserService;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,14 +16,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class AppWebSocketController {
 
-    @GetMapping
+    @GetMapping("/mensajes")
     public String mensajes(ModelMap interfazConPantalla){
         return "mensajes";
     }
+
+    @GetMapping("/mensajesRegistro")
+    public String mensajesRegistro(ModelMap interfazConPantalla){
+        return "mensajes";
+    }
+
+    public UserService userService;
 
     @MessageMapping("/chat")
     @SendTo("/topic/message")
