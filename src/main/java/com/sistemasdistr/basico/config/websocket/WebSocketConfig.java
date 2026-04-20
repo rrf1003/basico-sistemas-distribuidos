@@ -22,4 +22,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
         registry.addEndpoint("/caht").setAllowedOriginPatterns("*").withSockJS();
     }
 
+    @Override
+    public void registerStomp(){}
+
 }

@@ -4,6 +4,7 @@ import com.sistemasdistr.basico.config.websocket.OutputMessage;
 import com.sistemasdistr.basico.dto.Message;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,5 +25,16 @@ public class AppWebSocketController {
     public OutputMessage send(Message message){
         String time = new SimpleDateFormat("HH:mm").format(new Date());
         return new OutputMessage(message.getFrom(), message.getText(), time);
+    }
+
+    @MessageMapping("/register")
+    @SendTo("/topic/register")
+    public OutputMessage register(UserDTO dto) throws Exception{
+        System.out.printf("Registrando usuario:" + dto.getUsername());
+        setSecurityContextFrom(dto.getUsername());
+        System.out.print(SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
+        userService.register(dto.getUsername(), "nolausoaun");
+        String time = new SimpleDateFormat("HH:mm").format(new Date());
+        return new OutputMessage(dto.getUsername(), "Me he registrado enviame un mensaje", time, "todos");
     }
 }
