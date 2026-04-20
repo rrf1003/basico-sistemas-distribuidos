@@ -11,7 +11,7 @@ import java.util.Map;
 public class UserService {
 
     @Autowired
-    private UserRepository repo;
+    public UserRepository repo;
 
     @Autowired
     private KeyService keyservice;

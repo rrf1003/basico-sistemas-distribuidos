@@ -2,8 +2,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script>
-        function showMessageOutput(messageOutput){}
+    <script type="text/javascript">
+
+        function connect(){
+
+        }
+
+        function showMessageOutput(messageOutput){
+            var response = document.getElementById('response');
+            var from = document.getElementById('from');
+            var p = document.createElement('p');
+            if(from.value === messageOutput.to || messageOutput.to.length === 0 || messageOutput.to === 'todos'){
+                p.appendChild(document.createTextNode(messageOutput.form + ": "
+                    + messageOutput.text + " (" + messageOutput.time + ")"));
+                response.appendChild(p)
+            }
+        }
 
         function registeruser(){
             stompClient.send("/app/register", {}, JSON.stringify({
