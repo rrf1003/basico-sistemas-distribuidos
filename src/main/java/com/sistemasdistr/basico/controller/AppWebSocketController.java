@@ -27,6 +27,12 @@ import java.util.List;
 @Controller
 public class AppWebSocketController {
 
+    private final UserService userService;
+
+    public AppWebSocketController(UserService userService) {
+        this.userService = userService;
+    }
+
     @GetMapping("/mensajes")
     public String mensajes(ModelMap interfazConPantalla){
         return "mensajes";
@@ -37,8 +43,6 @@ public class AppWebSocketController {
         return "mensajes";
     }
 
-    public UserService userService;
-
     @MessageMapping("/chat")
     @SendTo("/topic/message")
     public OutputMessage send(Message message) throws NoSuchPaddingException, NoSuchAlgorithmException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
@@ -48,7 +52,7 @@ public class AppWebSocketController {
 
         Cipher aesCipher = Cipher.getInstance("AES");
 
-        byte[] decodedKey = Base64.getDecoder().decode(userfrom.getPrivateKey());
+        byte[] decodedKey = userfrom.getPrivateKey();
         SecretKey originalPrivateKey = new SecretKeySpec(decodedKey, 0, decodedKey.length, "AES");
             aesCipher.init(Cipher.ENCRYPT_MODE, originalPrivateKey);
 
@@ -56,7 +60,7 @@ public class AppWebSocketController {
 
         Cipher rsaCipher = Cipher.getInstance("RSA");
 
-        byte[] decodedPublicKey = Base64.getDecoder().decode(userfrom.getPublickey());
+        byte[] decodedPublicKey = userto.getPublickey();
         SecretKey originalPublicKey = new SecretKeySpec(decodedPublicKey, 0, decodedPublicKey.length, "AES");
             rsaCipher.init(Cipher.ENCRYPT_MODE, originalPublicKey);
 

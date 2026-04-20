@@ -23,8 +23,8 @@ public class UserService {
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
-        user.setPublickey(keys.get("public"));
-        user.setPrivateKey(keys.get("private"));
+        user.setPublickey(keys.get("public").getBytes());
+        user.setPrivateKey(keys.get("private").getBytes());
 
         return repo.save(user);
     }
